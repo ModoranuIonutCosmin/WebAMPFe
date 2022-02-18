@@ -1,0 +1,41 @@
+<div class="player">
+  <div class="player__controls">
+    <div class="controls">
+      <button nbButton status="primary" (click)="toggleShuffle()">
+        <nb-icon *ngIf="!shuffled" icon="shuffle-outline"></nb-icon>
+        <nb-icon *ngIf="shuffled" icon="shuffle-2-outline"></nb-icon>
+      </button>
+      <button nbButton status="primary" (click)="playPreviousSong()">
+        <nb-icon icon="skip-back-outline"></nb-icon>
+      </button>
+      <button nbButton status="primary" (click)="playSong()">
+        <nb-icon *ngIf="!paused" icon="pause-circle-outline"></nb-icon>
+        <nb-icon *ngIf="paused" icon="play-circle-outline"></nb-icon>
+      </button>
+      <button nbButton status="primary" (click)="playNextSong()">
+        <nb-icon icon="skip-forward-outline"></nb-icon>
+      </button>
+      <button nbButton status="primary" (click)="openDialog(this.songInfo.id || '')">
+        <nb-icon icon="plus-square-outline"></nb-icon>
+      </button>
+    </div>
+
+
+    <div class="player__progressInfo">
+      <span class="elapsed">{{this.trackPositionMsec | lengthFormat}}</span>
+      <nb-progress-bar [value]="this.progressPercent()"
+                       (click)="seek($event)"
+                       status="info"
+      ></nb-progress-bar>
+      <span class="total">{{this.totalTrackTimeMsec | lengthFormat }}</span>
+    </div>
+
+    <div class="player__trackInfo">
+        <img class= "smallPlayerAvatar" [src]="this.songInfo.coverImageUrl" appImageFallback="assets/images/PlaylistPlaceholder1.png"/>
+        <div>
+          <h1 class = "player__trackName"> {{this.songInfo.name}}</h1>
+          <span *ngFor="let artist of this.songInfo.artists | slice:0:3">{{artist.artistName}} . </span>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<nb-card>
+  <header>
+    <h1>
+      News
+    </h1>
+  </header>
+  <nb-list
+    nbInfiniteList
+    listenWindowScroll
+    [threshold]="500"
+    (bottomThreshold)="loadNext()">
+    <nb-list-item *ngFor="let newsPost of newsPosts">
+      <app-news [dataSource]="newsPost"></app-news>
+    </nb-list-item>
+    <nb-list-item *ngFor="let _ of placeholders">
+      <app-news-placeholder></app-news-placeholder>
+    </nb-list-item>
+  </nb-list>
+</nb-card>

@@ -1,0 +1,22 @@
+<div class="content">
+  <div class="select-group">
+    <label class="caption-2">Sort criteria</label>
+    <nb-select placeholder="Sort criteria" [(selected)]="selectedSortCriteria">
+      <nb-option [value]="'dateAdded'">Date added</nb-option>
+      <nb-option [value]="'popular'">Popularity</nb-option>
+    </nb-select>
+  </div>
+  <div class="select-group">
+    <label class="caption-2">Sort order</label>
+    <nb-select placeholder="Sort order" [(selected)]="sortOrder">
+      <nb-option [value]="'asc'">Ascendant</nb-option>
+      <nb-option [value]="'desc'">Descendent</nb-option>
+    </nb-select>
+  </div>
+
+</div>
+<div class="apply">
+  <button nbButton status="primary" (click)="optionsChanged()">Apply filters</button>
+</div>
+
+

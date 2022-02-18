@@ -1,0 +1,28 @@
+@use "../../../../../themes";
+
+ .albums, .songs {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+   p{
+     max-width: 200px;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+   }
+}
+
+ .songs__results, .albums__results{
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+   margin: 20px;
+   cursor: pointer;
+ }
+
+img{
+  width: 200px;
+  height: 200px;
+}
+

@@ -1,0 +1,27 @@
+<main>
+  <section>
+    <div class="mainContent">
+      <div class = "cover">
+        <img [src] = "dataSource.coverImageUrl || ''" appImageFallback="assets/images/PlaylistPlaceholder1.png" alt = "album photo"/>
+      </div>
+      <div class = "infoPanel">
+        <header>
+          <h1>{{dataSource.name}}</h1>
+        </header>
+        <p><span *ngFor="let artist of dataSource.artists">{{artist.artistName}} . </span></p>
+      </div>
+    </div>
+    <div class="favoriteRibbon">
+      <button nbButton status="danger"
+              class="favoriteButton"
+              (click)="toggleFavorite()">
+        <nb-icon *ngIf="!this.isFavorite" icon="heart-outline"></nb-icon>
+        <nb-icon *ngIf="this.isFavorite" icon="heart"></nb-icon>
+      </button>
+    </div>
+
+  </section>
+
+
+</main>
+

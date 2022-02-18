@@ -1,0 +1,9 @@
+<article class="newsPost">
+  <header class="header-signature">
+    <h1>{{this.dataSource.title}}</h1>
+    <p>Date posted: {{this.dataSource.dateCreated | date: 'medium'}}</p>
+  </header>
+  <img class="post__banner" [src]="this.dataSource.bannerImageUrl" alt="News post banner"/>
+  <p [innerHTML]="this.dataSource.body">
+  </p>
+</article>

@@ -1,0 +1,50 @@
+@use '../../../../themes' as *;
+
+
+
+main {
+  position: relative;
+}
+
+.searchBar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.suggestionsList {
+  display: block;
+  background-color: nb-theme(color-basic-700);
+  padding: 0;
+  margin: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  list-style-type: none;
+
+  .searchBar__feedback{
+    padding: 0 0 0 15px;
+  }
+  .suggestionsList__suggestion {
+    width: 100%;
+    padding: 0;
+    margin: 3px 0;
+    &:hover {
+      background-color: nb-theme(color-primary-400);
+    }
+    p{
+      margin: 0;
+      padding: 5px 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .suggestionsList{
+    position: relative;
+  }
+}

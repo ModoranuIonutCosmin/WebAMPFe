@@ -1,0 +1,133 @@
+.player{
+  width: 100%;
+  button{
+    box-shadow: none;
+  }
+
+  box-sizing: border-box;
+}
+
+.player__progressInfo{
+  margin: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  nb-progress-bar{
+    width: 700px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+}
+.player__controls{
+  margin: 0px 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  button {
+  border-radius: 0;
+  }
+}
+
+.player__trackInfo{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 10px;
+
+  .player__trackName, span{
+    max-width: 250px;
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 0 0 10px;
+    padding: 0;
+  }
+}
+
+.smallPlayerAvatar{
+  width: 40px;
+  height: 40px;
+  border: 1px solid #efefef;
+}
+
+@media (min-width: 1200px){
+  .player__progressInfo{
+    margin: 0px 10px;
+    nb-progress-bar{
+      width: 500px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  }
+
+  .player__trackName, span{
+    font-size: 0.5rem;
+    margin: 0 0 0 5px;
+    padding: 0;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1200px) {
+  .player__progressInfo{
+    margin: 0px 10px;
+    nb-progress-bar{
+      width: 200px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  }
+
+  .player__trackName, span{
+    font-size: 0.5rem;
+    margin: 0 0 0 5px;
+    padding: 0;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+
+
+  .player__progressInfo{
+    margin: 0px 20px;
+    nb-progress-bar{
+      width: 100px;
+      cursor: pointer;
+    }
+
+  }
+  .player__trackInfo{
+    width: 150px;
+    .player__trackName, span{
+      max-width: 150px;
+      font-size: 0.5rem;
+      margin: 0 0 0 5px;
+      padding: 0;
+    }
+  }
+
+}
+
+@media (min-width: 250px) and (max-width: 600px) {
+
+  .player__controls{
+    display: flex;
+    flex-direction: column;
+  }
+  .player__progressInfo{
+    margin: 15px 5px;
+    nb-progress-bar{
+      width: 150px;
+      margin: 0 3px;
+      cursor: pointer;
+    }
+
+    .player__trackName, span{
+      max-width: 75px;
+      font-size: 0.3rem;
+      margin: 0 0 0 0px;
+      padding: 0;
+    }
+  }
+}

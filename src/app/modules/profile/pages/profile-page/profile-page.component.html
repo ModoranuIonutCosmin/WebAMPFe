@@ -1,0 +1,84 @@
+<nb-card>
+  <nb-card-body>
+    <nb-tabset fullWidth="true">
+
+      <nb-tab tabTitle="General info" class="half-tab">
+        <header>
+          <h1>Profile info</h1>
+        </header>
+        <div class="profile">
+          <div class="profile__generalInfo">
+
+            <form [formGroup]="this.userInfoForm">
+              <div class="inputGroup">
+                <label for="UserName">Username </label>
+                <input nbInput status="basic" id="UserName" type="text"
+                       placeholder="User name"
+                       formControlName="userName"
+                       [(ngModel)]="userProfileData.userName"
+                />
+              </div>
+
+              <div class="inputGroup">
+                <label for="FirstName">First name </label>
+                <input nbInput status="basic" id="FirstName" type="text"
+                       placeholder="First name"
+                       formControlName="firstName"
+                       [(ngModel)]="userProfileData.firstName"
+                />
+              </div>
+
+              <div class="inputGroup">
+                <label for="LastName">Last name </label>
+                <input nbInput status="basic" id="LastName" type="text"
+                       placeholder="Last name"
+                       formControlName="lastName"
+                       [(ngModel)]="userProfileData.lastName"
+                />
+              </div>
+
+              <div class="inputGroup">
+                <label for="Email">Email </label>
+                <input nbInput status="basic" id="Email" type="text"
+                       placeholder="Email"
+                       formControlName="email"
+                       [(ngModel)]="userProfileData.email"
+
+                />
+              </div>
+
+            </form>
+          </div>
+          <div class="profile__dangerZone">
+              <nb-checkbox status="primary">Keep me up to date with the latest news.</nb-checkbox>
+              <button nbButton status="danger">Delete account</button>
+          </div>
+        </div>
+
+      </nb-tab>
+      <nb-tab tabTitle="Subscription" class="half-tab">
+        <header>
+          <h1>
+            Your subscriptions
+          </h1>
+        </header>
+        <div class="subscription__content">
+          <p>Subscription level: <strong>{{this.subscriptionName}}</strong></p>
+          <p>
+            You've currently used <strong>{{this.userProfileData.subscription.uploadMinutesUsed}}</strong>
+            out of <strong>{{this.userProfileData.subscription.uploadMinutesMax}}</strong>  upload minutes.
+          </p>
+
+          <div *ngIf="userProfileData.subscription.type == 0" class="subscription__offer">
+            <p>
+              Due to this application being in beta, we offer you a free "PRO" subscription for 30 days.
+              You can claim it here.
+            </p>
+            <button nbButton status="success" class="subscription__claimButton" (click)="this.claimSubscription()" >Claim free subscription</button>
+          </div>
+        </div>
+
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>

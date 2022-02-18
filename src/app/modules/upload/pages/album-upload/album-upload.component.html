@@ -1,0 +1,181 @@
+<main *ngIf="!(isLoading$ | async)">
+  <nb-stepper linear="true" disableStepNavigation [selectedIndex]="stepperIndex">
+
+    <nb-step label="Select files">
+      <header>
+        <h1>We're happy to upload your album</h1>
+        <p>
+          Browse for the audio files by clicking the browse button or by dragging
+          and dropping them onto the rectangle bellow.
+        </p>
+        <p>You have <strong>{{this.userModel.subscription.uploadMinutesMax - this.userModel.subscription.uploadMinutesUsed}}</strong> upload minutes left.</p>
+      </header>
+
+      <div class="dropzone" appDragAndDrop (filesDropped)="newFilesDropped($event)">
+        <input type="file" #fileDropRef id="fileDropRef" multiple
+               (change)="newFilesBrowsed($event)"
+               accept="audio/mpeg"
+        >
+        <img class="uploadImgBg" src="../../../../../assets/images/upload.png" alt="drag and drop icon"/>
+        <h3>Drop your .mp3 files here.</h3>
+        <label for="fileDropRef">Browse for file</label>
+      </div>
+
+
+      <section>
+        <header *ngIf="songFiles.length != 0">
+          <h2>File browser</h2>
+        </header>
+        <div>
+          <div class="browser">
+            <div class="browser__fileInfo" *ngFor="let file of this.songFiles; let i = index">
+              <div class="browser__properties">
+                <nb-icon class="largeIcon" icon="file-text-outline"></nb-icon>
+                <div class="browser__fileMetadata">
+                  <p><strong>Name: </strong>{{file.file.name}} </p>
+                  <p><strong>Size: </strong>{{file.file.size / 1000000}}MB </p>
+                </div>
+
+                <button nbButton status="danger" aria-label="Cancel uploading this file"
+                        class="browser__removeFile"
+                        (click)="removeFile(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <button nbButton status="basic"
+                class="proceedButton" aria-label="Procced to next step"
+                (click)="navigateToEditMetadata()"
+        [disabled]="!(this.songFiles.length)">
+          Proceed
+        </button>
+      </section>
+    </nb-step>
+
+    <nb-step label="Edit metadada">
+      <form [formGroup]="this.albumInfo">
+        <header>
+          <h2>Album metadata</h2>
+        </header>
+        <div class="albumInfoPanel">
+          <div class="albumInfoPanel__general">
+            <div class="inputGroup">
+              <label for="albumName">Name: </label>
+              <input nbInput status="basic" id="albumName" type="text" formControlName="name"
+                     placeholder="Album name..."
+              />
+            </div>
+
+            <div class="inputGroup">
+              <label for="coverUrl">Cover image url: </label>
+              <input nbInput status="basic" id="coverUrl" type="text" formControlName="coverImageUrl"
+                     placeholder="Album cover url..."
+              />
+            </div>
+
+            <div class="inputGroup">
+              <label for="releaseDate">Release date:</label>
+              <input nbInput status="basic" id="releaseDate" type="date" formControlName="releaseDate"
+                     value="2000-10-10"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="description">Description: </label>
+            <textarea id="description" nbInput fullWidth maxlength="1000"
+                      formControlName="description" placeholder="Enter album description here..."></textarea>
+          </div>
+        </div>
+
+        <div formArrayName="songs" class="songs">
+          <div *ngFor="let song of getSongs().controls; let songIndex = index">
+
+            <nb-accordion>
+
+              <nb-accordion-item expanded=true>
+                <nb-accordion-item-header>
+                  <p class="songName"> {{this.songFiles[songIndex].file.name}}</p>
+                </nb-accordion-item-header>
+                <nb-accordion-item-body [formGroupName]="songIndex" class="song__properties">
+                  <div class="inputGroup">
+                    <label for="name--{{songIndex}}">Song name: </label>
+                    <input nbInput status="basic" id="name--{{songIndex}}" type="text" formControlName="name"
+                           placeholder="Song name..."/>
+                  </div>
+
+
+                  <div formArrayName="artists">
+                    <div *ngFor="let artist of this.getArtists(songIndex).controls; let artistIndex = index"
+                         class="artistInput">
+
+                      <div [formGroupName]="artistIndex" class="inputGroup">
+                        <label for="artist--{{artistIndex}}">Artist {{artistIndex + 1}}: </label>
+                        <div class="inputButton">
+                          <input nbInput status="basic"
+                                 id="artist--{{artistIndex}}" type="text" formControlName="artistName"
+                                 [placeholder]="artistInputPlaceholder(artistIndex)"/>
+                          <button nbButton status="primary" (click)="removeArtistAtIndexForSong(songIndex, artistIndex)"
+                                  aria-label="Remove artist">
+                            <nb-icon icon="trash-2-outline"></nb-icon>
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div>
+                      <nb-progress-bar [value]="this.songFiles[songIndex].progress"
+                      [status]="this.songFiles[songIndex].failed ? 'danger' : 'success'"> </nb-progress-bar>
+                      <p class="progressText">{{this.songFiles[songIndex].progress}}% </p>
+                    </div>
+
+
+                    <div class="song__actions">
+                      <button nbButton status="primary" (click)="addNewArtist(songIndex)"
+                              aria-label="Add new artist">
+                        New artist
+                      </button>
+                      <button nbButton status="danger" aria-label="Cancel uploading this file"
+                              (click)="removeFile(songIndex)">
+                        Remove song
+                      </button>
+                    </div>
+
+
+                  </div>
+                </nb-accordion-item-body>
+              </nb-accordion-item>
+            </nb-accordion>
+
+          </div>
+
+        </div>
+
+      </form>
+      <button nbButton status="basic"
+              type="button"
+              class="proceedButton" aria-label="Procced to next step"
+              [disabled]="this.uploadButtonBusy"
+              (click)="this.initFileUpload()">
+        Proceed
+      </button>
+    </nb-step>
+
+    <nb-step label="Finish">
+      <h2>
+        Your album was uploaded.
+      </h2>
+
+      <p *ngIf="this.uploadSuccessful">Some files were not uploaded due to having total length
+      bigger than what you are allowed to transfer.</p>
+      <button nbButton status="success" (click)="seeAlbum()"> Navigate to album </button>
+    </nb-step>
+  </nb-stepper>
+
+</main>

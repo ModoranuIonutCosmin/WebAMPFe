@@ -1,0 +1,30 @@
+@use '../../../../../themes' as *;
+
+.divider{
+  border: 0.1px solid white;
+}
+
+.wrapper{
+  padding: 20px;
+}
+.albumsContainer{
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.album{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  &:hover{
+    background-color: nb-theme(color-basic-700);
+  }
+
+  img{
+    width: 200px;
+    height: 200px;
+  }
+}

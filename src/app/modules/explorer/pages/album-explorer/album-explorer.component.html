@@ -1,0 +1,23 @@
+<nb-card class = "wrapper">
+  <nb-card-body>
+    <app-album-filter-options
+      (filterCriteriaChanged)="filterChanged($event)"
+    ></app-album-filter-options>
+    <div class="divider"></div>
+    <div
+      infinite-scroll
+      [infiniteScrollDistance]="distance"
+      [infiniteScrollThrottle]="throttle"
+      (scrolled)="onScroll()" class="albumsContainer">
+
+      <div *ngFor="let album of albums; let i = index"
+           class = "album"
+           (click)="navigateToAlbum(album)"
+      >
+        <img src="{{album.coverImageUrl}}" appImageFallback="assets/images/PlaylistPlaceholder1.png"/>
+        <p>{{album.name}}</p>
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>

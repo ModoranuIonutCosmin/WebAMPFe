@@ -1,0 +1,97 @@
+@use '../../../../themes' as *;
+
+.container{
+  background-color: nb-theme(color-basic-700);
+
+  mat-row:hover{
+    background-color: nb-theme(color-basic-600);
+    p{
+      color: nb-theme(color-primary-900);
+    }
+  }
+}
+mat-cell{
+  border: 0 !important;
+}
+mat-row{
+  padding: 0 15px;
+  border: 0 !important;
+}
+.nameCell {
+  text-align: left;
+  word-break: break-word;
+
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.mat-column-coverImg{
+  width: 50px;
+  flex: 0 0 50px;
+  padding-left: 0;
+}
+
+.mat-column-position {
+  padding: 0 !important;
+  width: 50px;
+  flex: 0 0 50px;
+  justify-content: center;
+}
+.mat-column-length {
+  width: 70px;
+  flex: 0 0 70px;
+}
+
+.mat-column-controls {
+  width: 50px;
+  flex: 0 0 50px;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+
+  button{
+    margin: 0 auto;
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+
+.coverImage {
+  width: 50px;
+}
+
+.controls{
+  padding: 0;
+  button{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  mat-row{
+    font-size: 0.9em !important;
+    p{
+      font-size: 0.8em !important;
+    }
+  }
+
+  .nameCell{
+    p {
+      white-space: normal;
+    }
+  }
+
+  .mat-column-coverImg{
+    display: none;
+  }
+}
+
+
+
