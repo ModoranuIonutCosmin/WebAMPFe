@@ -1,0 +1,23 @@
+@use '../../../../../themes' as *;
+
+.playlist{
+  width: 200px;
+  text-align: center;
+  margin: 0 15px;
+  padding: 20px;
+  cursor: pointer;
+  &:hover{
+    background-color: nb-theme(color-basic-700);
+  }
+  img {
+    width: 100%;
+    margin: 0 auto;
+  }
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}

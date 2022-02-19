@@ -1,0 +1,147 @@
+@use '../../../../themes' as *;
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  a{
+    text-decoration: none;
+  }
+
+  .hamburgerMenu {
+    display: none;
+    margin: 0 15px;
+  }
+
+  .siteLogo {
+    width: 200px;
+    margin: 0 15px;
+    flex: 1 1 auto;
+  }
+
+  .headerContent {
+    display: flex;
+    align-items: center;
+    flex: 9 1 auto;
+    height: 75px;
+    z-index: 1899;
+    max-width: 1215px;
+    margin: auto;
+
+    li {
+      display: flex;
+    }
+
+    .mainContent {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: space-between;
+
+      app-searchbar {
+        width: 60%;
+        margin: 0 20px;
+      }
+
+      .userControls {
+        button {
+          height: 30px;
+          padding: 10px;
+          border-radius: 3px;
+        }
+      }
+
+      .registerControls{
+        display: flex;
+        align-items: center;
+        a{
+          width: 50px;
+        }
+      }
+    }
+  }
+}
+
+
+.linksList, .userControls {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+
+  li {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    margin: 1em;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  main {
+    height: 100%;
+    margin: 0 -21.25px;
+    justify-content: space-between;
+
+    .hamburgerMenu {
+      display: block;
+    }
+
+    .siteLogo {
+      flex: unset;
+      max-height: 50px;
+    }
+
+    .headerContent {
+      flex: unset;
+      width: 100%;
+      height: calc(100% - 195px);
+      top: 80px;
+      position: fixed;
+      display: block;
+
+      .mainContent {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+
+        .linksList {
+          flex: 1 1 auto;
+        }
+
+        app-searchbar {
+          height: 270px;
+          flex: 7 1 auto;
+          width: 100%;
+          padding: 20px 50px;
+        }
+
+        .userControls {
+          flex: 1 1 auto;
+
+        }
+
+
+        background-color: nb-theme(color-basic-1000);
+      }
+    }
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  main{
+    .headerContent{
+      height: calc(100% - 290px);
+    }
+  }
+
+}

@@ -1,0 +1,37 @@
+<nb-card>
+  <nb-card-body>
+    <div class="wrapper">
+      <section class="generalInfo">
+        <div class = "cover">
+          <img [src] = "dataSource.coverImageUrl" appImageFallback="assets/images/SongPlaceholder.png" alt = "song details"/>
+
+        </div>
+        <div class = "infoPanel">
+          <header>
+            <h1>{{dataSource?.name}}</h1>
+          </header>
+          <h2>Contributing artists</h2>
+          <span *ngFor="let artist of dataSource?.artists">{{artist.artistName}} . </span>
+          <div class="controls">
+            <button nbButton status="primary" aria-label="Play button"
+                    class ="playButton"
+                    (click) = "playSong()">
+              <nb-icon icon="arrow-right-outline"></nb-icon>
+            </button>
+            <button nbButton status="primary" aria-label="Play button"
+                    class ="optionsButton"
+                    (click) = "openDialog(this.songId)">
+              <nb-icon icon="more-horizontal-outline"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+
+  </nb-card-body>
+</nb-card>
+
+
+

@@ -1,0 +1,58 @@
+@use '../../../../themes' as *;
+
+
+.container {
+  max-width: 700px;
+  max-height: 80vh;
+  margin: 0;
+  padding: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: nb-theme(color-basic-700);
+}
+
+
+.playlist {
+  img {
+    margin: 0 auto;
+    width: 175px;
+  }
+  .playlistName{
+    max-width: 100px;
+    white-space: break-spaces;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-dialog-content {
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.newPlaylistInput{
+  width: 175px;
+  font-size: 6pt !important;
+}
+.filterInput{
+  margin: 10px 0;
+}
+
+mat-dialog-actions{
+  button{
+    margin: 0 5px;
+  }
+}
+
+
+@media (max-width: 900px) {
+  main{
+    .container{
+      width: 100%;
+    }
+  }
+}

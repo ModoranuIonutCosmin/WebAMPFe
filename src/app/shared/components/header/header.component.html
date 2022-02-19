@@ -1,0 +1,55 @@
+<main #fullHeader>
+  <img class="siteLogo"
+       id = "hamburger"
+       src="assets/images/logo.png"/>
+  <button nbButton status="primary" class="hamburgerMenu" (click) = toggleOverlay()>
+    <nb-icon icon="menu-outline"></nb-icon>
+  </button>
+  <div #headerContent class="headerContent" *ngIf="overlayOpen || !tablet" [@slideInOut]>
+    <div class="mainContent">
+      <ul class="linksList">
+        <li>
+          <a [routerLink]="['home']">Home</a>
+        </li>
+        <li>
+          <a [nbContextMenu]="this.exploreItems" [nbContextMenuPlacement]="contextMenuOpenDirection"
+             [nbContextMenuTrigger]="contextMenuOpenTrigger" nbContextMenuTag="explore-menu" >
+            Explore
+          </a>
+          <nb-icon icon="chevron-down-outline"></nb-icon>
+        </li>
+        <li>
+          <a [nbContextMenu]="this.libraryItems" [nbContextMenuPlacement]="contextMenuOpenDirection"
+             [nbContextMenuTrigger]="contextMenuOpenTrigger" nbContextMenuTag="library-menu">Library</a>
+          <nb-icon icon="chevron-down-outline"></nb-icon>
+        </li>
+
+      </ul>
+      <!-- Partea de search -->
+      <app-searchbar (searchEvent)="closeOverlay()"></app-searchbar>
+
+      <!-- Controale user -->
+
+      <div *ngIf="(this.currentUser$ | async) != ''" class="userControls">
+        <!-- E logat -->
+        <button nbButton status="primary" outline
+                [routerLink]="['/upload']"
+        >Upload
+        </button>
+        <li [nbContextMenu]="this.usersControlsItems" [nbContextMenuPlacement]="contextMenuOpenDirection"
+            [nbContextMenuTrigger]="contextMenuOpenTrigger" nbContextMenuTag="user-profile-menu">
+          <nb-user name="{{this.currentUser$ | async}}" title="User"></nb-user>
+        </li>
+
+      </div>
+
+      <div *ngIf="(this.currentUser$ | async) == ''" class="registerControls">
+        <!-- Nu e logat -->
+        <a class="caption-2" [routerLink]="['/auth/login']">Sign in</a>
+        <button nbButton status="primary" [routerLink]="['/auth/register']">Create account</button>
+      </div>
+
+    </div>
+
+  </div>
+</main>

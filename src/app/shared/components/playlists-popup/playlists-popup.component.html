@@ -1,0 +1,35 @@
+<main >
+  <div class="container">
+    <h2 class = "h2" mat-dialog-title>Add a playlist</h2>
+    <p class="text-hint">Select a playlist to add this song to.</p>
+    <p>You can add a new playlist by editing the text box below and pressing enter.</p>
+    <input type="text" nbInput fullWidth status="basic" placeholder="Filter playlists"
+           class="filterInput"
+           (input) ="filterPlaylists()" [(ngModel)]="filterText"
+    />
+
+    <mat-dialog-content class="mat-typography">
+      <div class="playlist" (click) = "addNewPlaylist()" >
+        <img src="assets/images/PlaylistPlaceholder1.png" appImageFallback="assets/images/PlaylistPlaceholder1.png"/>
+        <input nbInput status="basic"
+               class="newPlaylistInput"
+               type="text"
+               placeholder="Add a new playlist"
+               [readOnly]="readOnly" (keyup.enter) = "finishEditing()"
+               (keyup.escape)="resetFromEdit()"
+               [(ngModel)]="enteredName"/>
+      </div>
+
+      <div class = "playlist" *ngFor="let playlist of this.filteredPlaylists"
+      (click) = "addSongToPlaylist(playlist.id)">
+        <img src="{{playlist.coverImageUrl || ''}}" appImageFallback="assets/images/PlaylistPlaceholder1.png"
+             alt="Add to this playlist"/>
+        <p class="playlistName">{{playlist.name}}</p>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button nbButton status="primary"
+              [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+    </mat-dialog-actions>
+  </div>
+</main>

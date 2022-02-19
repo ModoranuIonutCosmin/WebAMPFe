@@ -1,0 +1,53 @@
+header{
+  h1{
+    text-align: center;
+  }
+}
+
+p{
+  text-align: center;
+}
+
+.profile{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .profile__dangerZone{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.inputGroup{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.subscription__content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .subscription__offer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+
+@media  (max-width: 900px) {
+  .inputGroup{
+    width: 100%;
+    input{
+      width: 100%;
+    }
+  }
+  .profile{
+    flex-direction: column;
+  }
+}

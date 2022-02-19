@@ -1,0 +1,8 @@
+
+<main>
+  <app-song-browser [dataSource]="dataSource"
+                    [menuOptions]="['Remove song...']"
+                    (songPlayClicked)="playlistPlayClicked($event)"
+                    (songOptionsClicked)="removeFromPlaylist($event)"></app-song-browser>
+</main>
+

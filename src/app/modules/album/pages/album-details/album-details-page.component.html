@@ -1,0 +1,13 @@
+
+<main class="wrapper" *ngIf="!(this.isLoading$ | async)">
+  <div class="container">
+    <app-album-info-panel [dataSource]="albumData"></app-album-info-panel>
+    <app-song-browser [dataSource]="songsData"
+                      [menuOptions]="['Add song to playlist...']"
+                      (songPlayClicked)="songPlayClicked($event)"
+                      (songOptionsClicked)="addSongToPlaylist($event)">
+    </app-song-browser>
+  </div>
+</main>
+
+

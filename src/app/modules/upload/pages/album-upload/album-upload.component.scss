@@ -1,0 +1,255 @@
+@use "../../../../../themes" as *;
+
+h2{
+  text-align: center;
+}
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+#fileDropRef {
+  visibility: hidden;
+  display: none;
+}
+
+
+//Step 1 upload
+.dropzone {
+  width: 100%;
+  padding: 45px 0;
+  margin-bottom: 50px;
+  display: block;
+  text-align: center;
+  box-sizing: content-box;
+  border: 1px solid lime;
+  position: relative;
+
+  input {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+  }
+
+  label {
+    padding: 20px 10px;
+    background-color: nb-theme(color-basic-700);
+    border-radius: 12px;
+    white-space: nowrap;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.uploadImgBg {
+  width: 150px;
+  opacity: 25%;
+}
+
+.fileover {
+  background-color: darkblue;
+}
+
+
+.albumInfoPanel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.albumInfoPanel__general {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.inputGroup {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.browser {
+  display: block;
+  margin: 2em 0;
+}
+
+.browser__fileInfo {
+  display: flex;
+  align-items: center;
+  background-color: nb-theme(color-basic-900);
+  width: 100%;
+
+  .browser__properties {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid nb-theme(color-basic-1100);
+
+
+    &:hover {
+      background-color: nb-theme(color-basic-1000);
+    }
+
+    .browser__fileMetadata {
+      width: calc(100% - 100px);
+
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+      }
+    }
+
+  }
+
+  .browser__removeFile {
+    width: 50px;
+    flex: 0 0 50px;
+  }
+
+  .largeIcon {
+    font-size: 72pt;
+    width: 50px;
+    flex: 0 0 50px;
+  }
+
+
+}
+
+//Step 2
+nb-accordion-item-header{
+  background-color: nb-theme(color-basic-1100);
+}
+.artistInput {
+  display: flex;
+}
+
+.albumInfoPanel__general {
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .inputGroup {
+    width: 100%;
+
+    input {
+      height: 50px;
+      box-sizing: content-box;
+      margin: 0;
+      padding: 0;
+      max-width: unset;
+      min-width: unset;
+    }
+  }
+}
+
+.proceedButton {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  background-color: nb-theme(color-basic-900) !important;
+  color: nb-theme(color-basic-400) !important;
+  margin: 20px auto;
+}
+
+.inputButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.songs {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  .songName {
+    text-overflow: ellipsis;
+    white-space: break-spaces;
+    word-wrap: break-word;
+    overflow: hidden;
+
+  }
+
+  .song__properties {
+    max-width: 500px;
+    width: 100%;
+
+    .song__nameInputPair {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .artistInput {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    .inputGroup{
+      width: 100%;
+      input{
+        margin: 10px 0;
+        max-width: 500px;
+        width: 100%;
+      }
+      label, div{
+        margin: 10px 0;
+      }
+
+    }
+    button {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+
+  input {
+    height: 50px;
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
+    max-width: unset !important;
+    min-width: unset !important;
+  }
+  .song__actions{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+nb-progress-bar{
+  margin-bottom: 10px;
+}
+.progressText{
+  text-align: right;
+}
+
+//3 - Finish
+
+
+@media (max-width: 900px) and (min-width: 500px) {
+  .songName {
+    max-width: 400px;
+  }
+}
+
+
+@media (max-width: 500px) and (min-width: 300px) {
+  .songName {
+    max-width: 140px;
+  }
+
+
+}
+
+@media (max-width: 300px) {
+  .songName {
+    max-width: 150px;
+  }
+}

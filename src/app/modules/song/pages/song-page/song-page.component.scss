@@ -1,0 +1,46 @@
+h1{
+  font-size: 2.5em;
+}
+
+h2{
+  font-size: 1.5em;
+}
+
+
+
+.controls{
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.playButton, .optionsButton{
+  width: 50px;
+  height: 50px;
+  margin: 10px 0px;
+}
+.generalInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  img{
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
+
+
+
+@media (max-width: 900px) {
+  .generalInfo{
+    flex-direction: column;
+
+    img{
+      padding: 25px 50px;
+      width: 100%;
+      max-width: unset;
+      min-width: 100px;
+      height: 50%;
+    }
+  }
+}

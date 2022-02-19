@@ -1,0 +1,11 @@
+@use '../../../../../themes' as *;
+
+
+header{
+  h1{}
+  text-align: center;
+}
+nb-list-item{
+  margin: 5px;
+  box-shadow: -1px 5px 1px 5px nb-theme(color-basic-700);
+}

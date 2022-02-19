@@ -1,0 +1,41 @@
+<h1>Search results for "{{this.dataSource.query}}":</h1>
+
+<main>
+  <div *ngIf="!noAlbums || !noSongs">
+    <section *ngIf="!noAlbums">
+      <header>
+        <h2>Albums</h2>
+      </header>
+      <div class="albums">
+
+        <div *ngFor="let element of this.dataSource.results.albums"
+             (click)="navigateToAlbum(element.id || '')"
+             class="albums__results">
+          <img src="{{element.coverImageUrl}}" alt="album"/>
+          <p>{{element.name}}</p>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="!noSongs">
+      <header>
+        <h2>Songs</h2>
+      </header>
+      <div class="songs">
+        <div *ngFor="let element of this.dataSource.results.songs"
+             class="songs__results"
+             (click)="navigateToSong(element.id || '')">
+          <img src="{{element.coverImageUrl}}" alt="song"/>
+          <p>{{element.name}}</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+  <div>
+
+  </div>
+</main>
+
