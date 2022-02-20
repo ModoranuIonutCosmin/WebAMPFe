@@ -47,6 +47,8 @@ import {ErrorInterceptor} from "./core/interceptors/error.interceptor";
 import {AlertsService} from "./core/services/alerts/alerts.service";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {RetryInterceptor} from "./core/interceptors/retry.interceptor";
+import {AuthorizedGuard} from "./core/guards/authorized.guard";
 
 
 @NgModule({
@@ -102,6 +104,16 @@ import { environment } from '../environments/environment';
       useClass: UnauthorizedInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RetryInterceptor,
+      multi: true
+    },
     AuthenticationService,
     MusicPlayerControllerFacadeService,
     AudioService,
@@ -109,7 +121,8 @@ import { environment } from '../environments/environment';
     MediaService,
     NextSongService,
     SpinnerService,
-    AlertsService
+    AlertsService,
+    AuthorizedGuard
   ],
   bootstrap: [AppComponent],
 })

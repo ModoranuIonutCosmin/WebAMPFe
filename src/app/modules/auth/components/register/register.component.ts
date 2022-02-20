@@ -4,6 +4,7 @@ import {AuthenticationService} from "../../../../core/authentication/authenticat
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NbGlobalPhysicalPosition, NbToastrService} from "@nebular/theme";
+import {SpinnerService} from "../../../../core/services/helpers/spinner.service";
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private authService : AuthenticationService,
               private router: Router,
-              private toastrService: NbToastrService) {
+              private toastrService: NbToastrService,
+              private spinnerService: SpinnerService) {
     this.form = this.fb.group({
       username: ["", Validators.required],
       firstName: ["", Validators.required],
@@ -33,7 +35,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.spinnerService.isLoading$.next(false);
   }
 
   register(): void {

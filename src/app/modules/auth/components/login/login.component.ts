@@ -2,6 +2,8 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../../../core/authentication/authentication.service";
 import {NbGlobalPhysicalPosition, NbPosition, NbToastrService} from "@nebular/theme";
+import {Spinner} from "@angular/cli/utilities/spinner";
+import {SpinnerService} from "../../../../core/services/helpers/spinner.service";
 
 
 @Component({
@@ -19,13 +21,14 @@ export class LoginComponent implements OnInit {
   constructor(protected service: AuthenticationService,
               protected cd: ChangeDetectorRef,
               protected router: Router,
-              private toastrService: NbToastrService
+              private toastrService: NbToastrService,
+              private spinnerService: SpinnerService
               ) {
 
   }
 
   login(): void {
-
+    this.spinnerService.isLoading$.next(false);
     this.service.login(this.user.userName, this.user.password)
       .subscribe((result) => {
       this.submitted = false;

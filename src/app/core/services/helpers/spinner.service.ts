@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
+import {NavigationEnd, Router} from "@angular/router";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SpinnerService {
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor() {
-
+  constructor(private router: Router) {
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.isLoading$.next(false);
+      }
+    })
   }
 }

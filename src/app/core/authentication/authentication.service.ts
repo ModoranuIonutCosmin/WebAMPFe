@@ -54,7 +54,9 @@ export class AuthenticationService {
 
   public isLoggedIn() {
 
-    return !!localStorage.getItem('id_token') && !!localStorage.getItem('expires_at');
+    return !!localStorage.getItem('id_token') &&
+      !!localStorage.getItem('expires_at') &&
+      this.getExpiration() > new Date();
   }
 
   getExpiration(): Date {

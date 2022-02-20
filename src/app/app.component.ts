@@ -16,6 +16,7 @@ export class AppComponent {
 
   isLoading$: BehaviorSubject<boolean>;
   serverDown$: BehaviorSubject<boolean>;
+
   constructor(private spinnerService: SpinnerService,
               private alertsService: AlertsService) {
     this.isLoading$ = spinnerService.isLoading$;

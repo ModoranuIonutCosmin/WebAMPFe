@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthorizedGuard} from "./core/guards/authorized.guard";
 
 const routes: Routes = [
   {
@@ -32,15 +33,18 @@ const routes: Routes = [
   },
   {
     path: 'upload',
-    loadChildren: () => import('./modules/upload/upload.module').then(m => m.UploadModule)
+    loadChildren: () => import('./modules/upload/upload.module').then(m => m.UploadModule),
+    canActivate: [AuthorizedGuard]
   },
   {
     path: 'playlist',
-    loadChildren: () => import('./modules/playlist/playlist.module').then(m => m.PlaylistModule)
+    loadChildren: () => import('./modules/playlist/playlist.module').then(m => m.PlaylistModule),
+    canActivate: [AuthorizedGuard]
   },
   {
     path: 'profile',
-    loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule)
+    loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),
+    canActivate: [AuthorizedGuard]
   },
 
 ];

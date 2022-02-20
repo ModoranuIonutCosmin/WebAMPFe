@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {ToastrHelpersService} from "../../../../core/services/helpers/toastr-helpers.service";
 import {NbGlobalPhysicalPosition} from "@nebular/theme";
 import {SpinnerService} from "../../../../core/services/helpers/spinner.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-profile-page',
@@ -20,11 +21,27 @@ export class ProfilePageComponent implements OnInit {
     lastName: [{value: '', disabled: true}],
     email: [{value: '', disabled: true}],
   })
+  isLoading$: BehaviorSubject<boolean>;
 
   constructor(private usersService: UsersService,
               private fb: FormBuilder,
               private toastrService: ToastrHelpersService,
               private spinnerService: SpinnerService) {
+    this.isLoading$ = spinnerService.isLoading$;
+
+    this.userProfileData = {
+      userName: "",
+      lastName: "",
+      firstName: "",
+      email: "",
+      subscription: {
+        uploadMinutesUsed: 30,
+        uploadMinutesMax: 30,
+        type: 0,
+        expiryDate: new Date(),
+        purchaseDate: new Date()
+      }
+    }
 
   }
 
@@ -38,7 +55,6 @@ export class ProfilePageComponent implements OnInit {
           this.spinnerService.isLoading$.next(false);
         },
         err => {
-          this.spinnerService.isLoading$.next(false);
         });
   }
 
