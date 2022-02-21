@@ -33,12 +33,17 @@ export class MusicPlayerControllerFacadeService {
       }
     })
 
-    //pregateste ultima muzica pusa.
-    mediaService.getSongUrl(this.latestUserActivity.value.songInfo?.id || "")
-      .subscribe(url => {
-        this.audioService.setUrl(url.url);
-        this.audioService.seekAudio(this.latestUserActivity.value.trackPosition || 0);
-      })
+    let currentSongId = this.latestUserActivity.value.songInfo?.id;
+
+    if (currentSongId != undefined && currentSongId != "") {
+      //pregateste ultima muzica pusa.
+      mediaService.getSongUrl(currentSongId)
+        .subscribe(url => {
+          this.audioService.setUrl(url.url);
+          this.audioService.seekAudio(this.latestUserActivity.value.trackPosition || 0);
+        })
+    }
+
 
     //Event to keep track of current playing time
     timer(500, 1000).subscribe(

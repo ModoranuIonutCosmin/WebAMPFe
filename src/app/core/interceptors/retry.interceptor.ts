@@ -7,14 +7,15 @@ import {
 } from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {concatMap, delay, retryWhen} from "rxjs/operators";
+import {AlertsService} from "../services/alerts/alerts.service";
 
 export const retryCount = 3;
 export const retryWaitMilliSeconds = 100;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RetryInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private alertService: AlertsService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
@@ -23,6 +24,10 @@ export class RetryInterceptor implements HttpInterceptor {
           concatMap((error, count) => {
             if (count <= retryCount && error.status == 0) {
               return of(error);
+            }
+
+            if (count > retryCount) {
+
             }
             return throwError(error);
           }),

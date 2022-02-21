@@ -121,7 +121,9 @@
                           <input nbInput status="basic"
                                  id="artist--{{artistIndex}}" type="text" formControlName="artistName"
                                  [placeholder]="artistInputPlaceholder(artistIndex)"/>
-                          <button nbButton status="primary" (click)="removeArtistAtIndexForSong(songIndex, artistIndex)"
+                          <button nbButton status="primary"
+                                  (click)="removeArtistAtIndexForSong(songIndex, artistIndex)"
+                                  *ngIf="artistIndex > 0"
                                   aria-label="Remove artist">
                             <nb-icon icon="trash-2-outline"></nb-icon>
                           </button>

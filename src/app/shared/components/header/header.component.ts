@@ -6,7 +6,7 @@ import {filter, map} from "rxjs/operators";
 import {PlayerComponent} from "../player/player.component";
 import {HeaderService} from "../../../core/header/header.service";
 import {animate, style, transition, trigger} from "@angular/animations";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -35,7 +35,6 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.tablet = event.target.innerWidth < 1200;
-    console.log(this.tablet);
   }
 
   @ViewChild('fullHeader')
@@ -91,10 +90,17 @@ export class HeaderComponent implements OnInit, AfterViewInit{
       .subscribe(title => {
           this.router.navigate(['/playlist'])
       });
+
+    this.router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        this.closeOverlay();
+      }
+    })
   }
   ngAfterViewInit(): void {
     this.tablet = this.headerElement.nativeElement.offsetWidth < 1200;
     this.changeTracker.detectChanges();
+
   }
 
   closeOverlay(): void {

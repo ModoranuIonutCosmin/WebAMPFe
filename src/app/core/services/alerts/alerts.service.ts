@@ -9,7 +9,7 @@ export class AlertsService {
 
   }
 
-  setAlertStatus(visible: boolean) {
+  setAlertServerDownStatus(visible: boolean) {
     this.serverDown$.next(visible);
   }
 

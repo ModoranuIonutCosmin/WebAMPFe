@@ -199,7 +199,6 @@ export class AlbumUploadComponent implements OnInit {
   }
 
   uploadNextFile(): void {
-    console.log(this.songIds);
 
     if (this.currentFile >=  this.songIds.length) {
       this.navigateToFinishUpload();
@@ -237,12 +236,5 @@ export class AlbumUploadComponent implements OnInit {
     return `Artist ${artistIndex + 1} name`
   }
 
-  private showErrorToaster() {
-    for (let control in this.albumInfo.controls) {
-      this.toastrService.showMessage(NbGlobalPhysicalPosition.BOTTOM_RIGHT,
-        'primary',
-        JSON.stringify(this.albumInfo.controls[control].errors))
-    }
-  }
 }
 

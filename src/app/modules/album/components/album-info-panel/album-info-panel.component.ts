@@ -3,6 +3,7 @@ import {AlbumInfo} from "../../models/album-info";
 import {FavoritesService} from "../../../../core/services/favorites/favorites.service";
 import {ToastrHelpersService} from "../../../../core/services/helpers/toastr-helpers.service";
 import {NbGlobalPhysicalPosition} from "@nebular/theme";
+import {AuthenticationService} from "../../../../core/authentication/authentication.service";
 
 @Component({
   selector: 'app-album-info-panel',
@@ -18,19 +19,23 @@ export class AlbumInfoPanelComponent implements OnChanges {
 
   constructor(private favoriteService: FavoritesService,
               private toastrService: ToastrHelpersService,
-              private changeDetector: ChangeDetectorRef) {
+              private authService: AuthenticationService) {
 
   }
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.dataSource && !this.initialized) {
+    if (this.dataSource && !this.initialized ) {
       this.albumId = this.dataSource.id || '';
-      this.favoriteService
-        .checkIfCurrentUserFavoritedAlbum(this.albumId)
-        .subscribe(res => {
-          this.isFavorite = res.isFavorite;
-        });
+
+      if (this.authService.isLoggedIn()) {
+        this.favoriteService
+          .checkIfCurrentUserFavoritedAlbum(this.albumId)
+          .subscribe(res => {
+            this.isFavorite = res.isFavorite;
+          });
+      }
+      
       this.initialized = true;
     }
 

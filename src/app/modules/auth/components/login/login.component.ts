@@ -40,7 +40,9 @@ export class LoginComponent implements OnInit {
       this.cd.detectChanges();
     }, (error) => {
         this.submitted = false;
-        this.errors = ['Invalid credentials', error.error.detail];
+        this.errors = ['Invalid credentials', error.error];
+        this.showMessage(NbGlobalPhysicalPosition.BOTTOM_RIGHT, 'warning', 'Login was unsuccesful! Please try again.')
+
       });
   }
 
