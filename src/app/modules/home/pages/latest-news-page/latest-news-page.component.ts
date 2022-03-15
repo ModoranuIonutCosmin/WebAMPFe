@@ -33,17 +33,17 @@ export class LatestNewsPageComponent implements OnInit{
 
     this.loading = true;
     this.placeholders = new Array(this.pageSize);
-
   }
   loadNewPosts(): void {
     this.spinnerService.isLoading$.next(true);
+    this.loading = true;
     this.newsService.loadNewsPosts(this.pageToLoadNext, this.pageSize)
       .subscribe(news => {
         this.placeholders = [];
+        this.pageToLoadNext++;
         this.newsPosts.push(...news.news);
         this.loading = false;
         this.totalPosts = news.total;
-        this.pageToLoadNext++;
         this.spinnerService.isLoading$.next(false);
       });
   }

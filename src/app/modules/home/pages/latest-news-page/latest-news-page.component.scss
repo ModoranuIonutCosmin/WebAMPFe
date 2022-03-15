@@ -1,11 +1,16 @@
 @use '../../../../../themes' as *;
 
 
+.newsPost{
+  width: 100%;
+}
 header{
-  h1{}
   text-align: center;
 }
+
+li{
+  margin: 1px;
+}
 nb-list-item{
-  margin: 5px;
   box-shadow: -1px 5px 1px 5px nb-theme(color-basic-700);
 }
