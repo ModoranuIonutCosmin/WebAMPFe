@@ -18,7 +18,6 @@ export class LatestNewsPageComponent implements OnInit{
 
   constructor(private newsService: NewsService,
               private spinnerService: SpinnerService) {
-    console.log('new instance of home service')
   }
 
   ngOnInit(): void {
@@ -44,6 +43,8 @@ export class LatestNewsPageComponent implements OnInit{
         this.newsPosts.push(...news.news);
         this.loading = false;
         this.totalPosts = news.total;
+        this.spinnerService.isLoading$.next(false);
+      }, err => {
         this.spinnerService.isLoading$.next(false);
       });
   }

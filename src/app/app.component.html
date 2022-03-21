@@ -3,11 +3,16 @@
   <nb-layout-header fixed>
     <app-header></app-header>
   </nb-layout-header>
-  <nb-layout-column [nbSpinner]="(this.isLoading$ | async) || false" nbSpinnerStatus="info">
-    <nb-alert status="danger"
-              *ngIf="serverDown$ | async"
-    >API server is down, please try again later.</nb-alert>
-    <router-outlet></router-outlet>
+
+  <nb-layout-column>
+
+      <nb-spinner *ngIf="(this.isLoading$ | async) || false" nbSpinnerStatus="info">
+
+      </nb-spinner>
+      <nb-alert status="danger"
+                *ngIf="serverDown$ | async"
+      >API server is down, please try again in 15-30 seconds (app may be slow due to cold start).</nb-alert>
+      <router-outlet></router-outlet>
   </nb-layout-column>
 
   <nb-layout-footer fixed>

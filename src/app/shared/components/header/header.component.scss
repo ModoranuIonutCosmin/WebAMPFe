@@ -1,6 +1,6 @@
 @use '../../../../themes' as *;
-
-main {
+.entireHeader {
+  z-index: 100000;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -10,14 +10,15 @@ main {
   }
 
   .hamburgerMenu {
-    display: none;
     margin: 0 15px;
+    display: none;
   }
 
   .siteLogo {
-    width: 200px;
+    max-width: 200px;
     margin: 0 15px;
     flex: 1 1 auto;
+    cursor: pointer;
   }
 
   .headerContent {
@@ -25,7 +26,6 @@ main {
     align-items: center;
     flex: 9 1 auto;
     height: 75px;
-    z-index: 1899;
     max-width: 1215px;
     margin: auto;
 
@@ -81,7 +81,7 @@ main {
 
 
 @media (max-width: 1200px) {
-  main {
+  .entireHeader {
     height: 100%;
     margin: 0 -21.25px;
     justify-content: space-between;
@@ -98,7 +98,7 @@ main {
     .headerContent {
       flex: unset;
       width: 100%;
-      height: calc(100% - 195px);
+      height: calc(100% - 160px);
       top: 80px;
       position: fixed;
       display: block;
@@ -136,12 +136,20 @@ main {
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-  main{
+  .entireHeader{
     .headerContent{
-      height: calc(100% - 290px);
+      height: calc(100% - 210px);
     }
   }
 
+}
+
+@media (max-width: 500px) {
+  .entireHeader{
+    .headerContent{
+      height: calc(100% - 255px);
+    }
+  }
 }

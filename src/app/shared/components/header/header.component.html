@@ -1,6 +1,7 @@
-<main #fullHeader>
+<main #fullHeader class = "entireHeader">
   <img class="siteLogo"
        id = "hamburger"
+       [routerLink]="['/']"
        src="assets/images/logo.png"/>
   <button nbButton status="primary" class="hamburgerMenu" (click) = toggleOverlay()>
     <nb-icon icon="menu-outline"></nb-icon>

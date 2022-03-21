@@ -9,8 +9,8 @@ import {Observable, of, throwError} from 'rxjs';
 import {concatMap, delay, retryWhen} from "rxjs/operators";
 import {AlertsService} from "../services/alerts/alerts.service";
 
-export const retryCount = 3;
-export const retryWaitMilliSeconds = 100;
+export const retryCount = 2;
+export const retryWaitMilliSeconds = 200;
 
 @Injectable({ providedIn: 'root' })
 export class RetryInterceptor implements HttpInterceptor {
