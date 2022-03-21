@@ -16,13 +16,9 @@ nb-layout-column {
 }
 
 nb-layout-footer {
-  z-index: 10000;
   bottom: 0;
   width: 100%;
   position: fixed;
-  app-player{
-    z-index: 10000;
-  }
 
   .fixed nav {
     padding: 0 !important;
